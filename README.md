@@ -24,13 +24,24 @@ I used an [ESP32-C3 SuperMini](https://www.espboards.dev/esp32/esp32-c3-super-mi
    - With Home Assistant: use the ESPHome add-on.
    - On a local machine: `pip install esphome`.
 2. Connect your ESP device and configure the pin assignments in the YAML file.
-3. Flash the firmware using ESPHome:
+3. Store sensitive values such as Wi-Fi credentials and API tokens in `secrets.yaml`.
+   - ESPHome will read these values from the file in the same directory as your configuration.
+   - Reference them in your YAML with `!secret <name>`.
+   - Example:
+
+```yaml
+wifi:
+  ssid: !secret your_wifi_ssid
+  password: !secret your_wifi_password
+```
+
+4. Flash the firmware using ESPHome:
 
 ```bash
 esphome run doorbell.yaml
 ```
 
-4. Add the device to Home Assistant or connect it to your MQTT broker.
+5. Add the device to Home Assistant or connect it to your MQTT broker.
 
 ## Configuration
 
